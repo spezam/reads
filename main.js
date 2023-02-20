@@ -12,6 +12,7 @@ createApp({
       .then(response => {
         this.books = response;
         this.bookdata = response.data;
+        this.rating = response.rating;
       })
   }
 }).mount('#books')
