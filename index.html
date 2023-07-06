@@ -72,7 +72,7 @@ a:hover {
 	<br/>
     <div class="container" id="books">
       <div v-for="b in bookdata">
-        <a v-bind:href="b.link">{{ b.author }} _ {{ b.title }}</a> <span v-for="(n, i) in b.rating">x</span>
+        <a v-bind:href="b.link">{{ b.title }} __ {{ b.author }}</a> <span v-for="(n, i) in b.rating">x</span>
         <br/><br/>
         <!-- <img v-bind:src="b.image"> -->
       </div>
