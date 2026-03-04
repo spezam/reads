@@ -4,15 +4,17 @@ const API = "https://2glmn3vc2c2thcn24rd7uocozu0zfwqa.lambda-url.eu-west-1.on.aw
 createApp({
   data() {
     return {
-      bookdata: []
+      bookdata: [],
+      loading: true
     }
   },
   mounted() {
     axios.get(API)
       .then(response => {
-        this.books = response;
-        this.bookdata = response.data;
-        this.rating = response.rating;
+        setTimeout(() => {
+          this.bookdata = response.data;
+          this.loading = false;
+        }, 1000)
       })
   }
 }).mount('#books')
