@@ -71,8 +71,9 @@ a:hover {
       <div class="main">
 	<br/>
     <div class="container" id="books">
-      <div v-for="b in bookdata">
-        <a v-bind:href="b.link">{{ b.title }} __ {{ b.author }}</a> <span v-for="(n, i) in b.rating">x</span>
+      <div v-for="(b, i) in bookdata">
+        <div v-if="i === 0 || new Date(bookdata[i-1].publication_date).getFullYear() !== new Date(b.publication_date).getFullYear()"><br/>-- {{ new Date(b.publication_date).getFullYear() }} --<br/><br/></div>
+        <a v-bind:href="b.link">{{ b.title }} __ {{ b.author }}</a> <span v-for="(n, j) in b.rating">x</span>
         <br/><br/>
         <!-- <img v-bind:src="b.image"> -->
       </div>
@@ -80,8 +81,8 @@ a:hover {
       </div>
     </div>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/vue@3.5.29/dist/vue.global.prod.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js" type="text/javascript"></script>
     <script src="main.js" type="text/javascript"></script>
   </body>
 </html>
