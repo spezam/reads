@@ -8,6 +8,13 @@ createApp({
       loading: true
     }
   },
+  computed: {
+    singleYear() {
+      if (!this.bookdata.length) return true
+      const y = new Date(this.bookdata[0].publication_date).getFullYear()
+      return this.bookdata.every(b => new Date(b.publication_date).getFullYear() === y)
+    }
+  },
   mounted() {
     axios.get(API)
       .then(response => {
