@@ -1,5 +1,5 @@
 const { createApp } = Vue
-const API = "https://tzk6ryx105.execute-api.eu-west-1.amazonaws.com"
+const API = "https://rpu7mnr3bhuedurcwgfnckzgie0drkud.lambda-url.eu-west-1.on.aws/"
 
 createApp({
   data() {
