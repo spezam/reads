@@ -71,7 +71,7 @@ a:hover {
           <div v-if="loading">...</div>
           <div v-else-if="error">.</div>
           <div v-else v-for="(b, i) in bookdata">
-            <div v-if="!singleYear && (i === 0 || bookdata[i-1].year !== b.year)"><br/>-- {{ b.year }} --<br/><br/></div>
+            <div v-if="!singleYear && (i === 0 || new Date(bookdata[i-1].publication_date).getFullYear() !== new Date(b.publication_date).getFullYear())"><br/>-- {{ new Date(b.publication_date).getFullYear() }} --<br/><br/></div>
             <a v-bind:href="b.link" target="_blank" rel="noopener">{{ b.title }} __ {{ b.author }}</a> <span v-for="n in b.rating">x</span>
             <br/><br/>
           </div>

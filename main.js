@@ -12,17 +12,14 @@ createApp({
   computed: {
     singleYear() {
       if (!this.bookdata.length) return true
-      const y = this.bookdata[0].year
-      return this.bookdata.every(b => b.year === y)
+      const y = new Date(this.bookdata[0].publication_date).getFullYear()
+      return this.bookdata.every(b => new Date(b.publication_date).getFullYear() === y)
     }
   },
   mounted() {
     axios.get(API)
       .then(response => {
-        this.bookdata = response.data.map(b => ({
-          ...b,
-          year: new Date(b.publication_date).getFullYear()
-        }))
+        this.bookdata = response.data
         this.loading = false
       })
       .catch(() => {
