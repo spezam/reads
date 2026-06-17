@@ -5,7 +5,8 @@ createApp({
   data() {
     return {
       bookdata: [],
-      loading: true
+      loading: true,
+      error: false
     }
   },
   computed: {
@@ -21,9 +22,14 @@ createApp({
     }
   },
   mounted() {
-    axios.get(API).then(response => {
-      this.bookdata = response.data
-      this.loading = false
-    })
+    axios.get(API)
+      .then(response => {
+        this.bookdata = response.data
+        this.loading = false
+      })
+      .catch(() => {
+        this.error = true
+        this.loading = false
+      })
   }
 }).mount('#books')
