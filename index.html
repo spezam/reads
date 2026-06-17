@@ -71,7 +71,7 @@
         margin-left: 6px;
       }
 
-      .loading {
+      .error {
         color: var(--muted);
       }
     </style>
@@ -82,9 +82,8 @@
 
     <div class="home">
       <div id="books">
-        <div v-if="loading" class="loading">...</div>
-        <div v-else-if="error" class="loading">.</div>
-        <template v-else>
+        <div v-if="error" class="error">.</div>
+        <template v-else-if="!loading">
           <div v-for="(b, i) in bookdata" :key="i" class="book">
             <div v-if="!singleYear && (i === 0 || year(bookdata[i-1]) !== year(b))" class="year">-- {{ year(b) }} --</div>
             <a :href="b.link" target="_blank" rel="noopener">{{ b.title }} __ {{ b.author }}</a><span class="rating"><span v-for="n in b.rating">x</span></span>
