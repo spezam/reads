@@ -11,17 +11,19 @@ createApp({
   computed: {
     singleYear() {
       if (!this.bookdata.length) return true
-      const y = new Date(this.bookdata[0].publication_date).getFullYear()
-      return this.bookdata.every(b => new Date(b.publication_date).getFullYear() === y)
+      const y = this.year(this.bookdata[0])
+      return this.bookdata.every(b => this.year(b) === y)
+    }
+  },
+  methods: {
+    year(b) {
+      return new Date(b.publication_date).getFullYear()
     }
   },
   mounted() {
-    axios.get(API)
-      .then(response => {
-        setTimeout(() => {
-          this.bookdata = response.data;
-          this.loading = false;
-        }, 1000)
-      })
+    axios.get(API).then(response => {
+      this.bookdata = response.data
+      this.loading = false
+    })
   }
 }).mount('#books')
